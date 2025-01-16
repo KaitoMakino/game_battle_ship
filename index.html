@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Battle Ship</title>
+  <!-- CSSファイルの読み込み -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Battle Ship</h1>
+  <!-- イントロ画面（黒背景にロゴを中央配置） -->
+  <div id="intro-container">
+    <img id="intro-logo" src="images/logo.png" alt="ロゴ">
+  </div>
+
+  <!-- BGMの変更 -->
+  <audio id="bgm-title" src="sounds/bgm_title.mp3" preload="auto" loop></audio>
+  <audio id="bgm-battle" src="sounds/bgm_battle.mp3" preload="auto" loop></audio>
+
+  <!-- タイトル画像を表示する領域 -->
+  <div id="title-container" style="display: none;">
+    <img id="title-image" src="images/title.png" alt="ゲームタイトル">
+  </div>
+
+  <!-- ボタンを表示する領域 -->
+  <div id="button-container" style="display: none;">
+    <button id="start-button">GAME START</button>
+  </div>
+
+  <!-- ゲーム画面を表示する領域 -->
+  <div id="game-container" style="display: none;">
+    <!-- プレイヤー1の盤面 -->
+    <div id="gameBoard1" class="game-board" style="display: none;"></div>
+    
+    <!-- プレイヤー2の盤面 -->
+    <div id="gameBoard2" class="game-board" style="display: none;"></div>
+  </div>
+
+  <!-- プレイヤーのターン表示 -->
+  <div id="turn-indicator" style="display: none;">プレイヤー1の番です。船の位置を5つまで決めてください</div>
+
+  <!-- 勝利メッセージ -->
+  <div id="win-message" style="display: none; font-size: 1.5rem; font-weight: bold; margin-top: 20px;"></div>
+
+  <!-- タイトルへ戻るボタン -->
+  <button id="back-to-title" style="display: none; font-size: 1.2rem; padding: 10px 20px; margin-top: 10px;">タイトルへ戻る</button>
+
+  <!-- JSファイルの読み込み -->
+  <script src="script.js"></script>
+</body>
+</html>
