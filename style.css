@@ -11,8 +11,8 @@ html, body {
 
 /* イントロ画面 */
 #intro-container {
-    width: 320px;
-    height: 320px;
+    width: 480px;
+    height: 480px;
     margin: 0 auto;
     margin-top: 50px;
     background-color: #000000; /* 黒背景 */
@@ -22,7 +22,7 @@ html, body {
 }
   
 #intro-logo {
-    max-width: 150px;
+    max-width: 200px;
     width: 100%;
     height: auto;
 }
@@ -37,8 +37,8 @@ html, body {
   
 /* タイトル画像のスタイル */
 #title-image {
-    max-width: 320px; /* 画像の幅を縮小したい場合に調整 */
-    width: 100%;
+    width: 480px; /* 画像の幅を縮小したい場合に調整 */
+    height: 480px;
     height: auto;
 }
   
@@ -53,8 +53,8 @@ html, body {
 
 /* ゲーム画面用のコンテナ */
 #game-container {
-    width: 320px;
-    height: 320px;
+    width: 480px;
+    height: 480px;
     position: relative;
     display: flex;
     align-items: center;
@@ -67,16 +67,16 @@ html, body {
 /* 盤面全体 */
 .game-board {
     display: grid;
-    grid-template-columns: repeat(5, 64px);
-    grid-template-rows: repeat(5, 64px);
+    grid-template-columns: repeat(5, 96px);
+    grid-template-rows: repeat(5, 96px);
     gap: 2px;
     margin: auto;
 }
 
 /* 各マス */
 .cell {
-    width: 64px;
-    height: 64px;
+    width: 96px;
+    height: 96px;
     border: 1px solid black;
     background-size: cover;
     cursor: pointer;

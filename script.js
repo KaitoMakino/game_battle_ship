@@ -9,6 +9,45 @@ window.addEventListener('DOMContentLoaded', () => {
     const turnIndicator = document.getElementById('turn-indicator');
     const winMessage = document.getElementById('win-message'); // 勝利メッセージ
     const backToTitleButton = document.getElementById('back-to-title'); // タイトルへ戻るボタン
+    const hitSound = document.getElementById('hit-sound'); // 効果音要素を取得
+
+function handleAttack(e) {
+    e.stopPropagation();
+
+    let cell = e.target;
+    let row = parseInt(cell.dataset.row);
+    let col = parseInt(cell.dataset.col);
+    let attackHistory = currentPlayer === 1 ? attackHistory1 : attackHistory2;
+    let opponentShips = currentPlayer === 1 ? player2Ships : player1Ships;
+    let cellKey = `${row}-${col}`;
+
+    if (!attackHistory[cellKey]) {
+        attackCount++;
+
+        if (opponentShips.some(ship => ship.row === row && ship.col === col)) {
+            cell.style.backgroundImage = 'url("images/ship.png")';
+            attackHistory[cellKey] = "hit";
+
+            // 船を当てたら効果音を再生
+            hitSound.play().catch(err => {
+                console.log("Sound playback was prevented:", err);
+            });
+        } else {
+            cell.style.backgroundImage = 'url("images/sea.png")';
+            attackHistory[cellKey] = "miss";
+        }
+
+        if (checkVictory()) return; // 勝利判定
+
+        if (attackCount === 3) {
+            attackCount = 0;
+            currentPlayer = currentPlayer === 1 ? 2 : 1;
+            turnIndicator.textContent = `プレイヤー${currentPlayer}のターンです。3箇所を攻撃してください`;
+            setTimeout(updateBoards, 1000);
+        }
+    }
+}
+
 
     // BGM要素
     const bgmTitle = document.getElementById('bgm-title');
@@ -90,7 +129,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 cell.dataset.row = i;
                 cell.dataset.col = j;
                 cell.style.backgroundImage = 'url("images/sea.png")';
-                cell.style.backgroundSize = '64px 64px';
+                cell.style.backgroundSize = '96px 96px';
 
                 // 配置フェーズ
                 if (player === 1) {
